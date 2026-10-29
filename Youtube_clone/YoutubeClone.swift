@@ -1,9 +1,24 @@
 import SwiftUI
 
 @main struct YoutubeClone: App {
+    @State private var showSplash = true
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ZStack {
+                if showSplash {
+                    SplashView()
+                        .transition(.opacity)
+                } else {
+                    ContentView()
+                }
+            }
+            .task {
+                try? await Task.sleep(for: .seconds(1.5))
+                withAnimation(.easeOut(duration: 0.4)) {
+                    showSplash = false
+                }
+            }
         }
     }
 }
