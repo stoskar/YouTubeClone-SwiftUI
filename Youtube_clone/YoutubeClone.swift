@@ -10,7 +10,7 @@ import SwiftUI
                     SplashView()
                         .transition(.opacity)
                 } else {
-                    ContentView()
+                    MainTabView()
                 }
             }
             .task {
