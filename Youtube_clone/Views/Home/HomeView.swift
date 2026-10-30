@@ -19,7 +19,13 @@ struct HomeView: View {
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
-                    videoCard
+                    VideoCardView(
+                        title: "Config 2022 Opening Keynote - Dylan Field",
+                        channelName: "Figma",
+                        views: "437K views",
+                        uploadedAgo: "7 days ago",
+                        duration: "12:40"
+                    )
                     shortsSection
                 }
             }
@@ -83,47 +89,6 @@ struct HomeView: View {
             .padding(.horizontal, 16)
         }
         .padding(.vertical, 8)
-    }
-    
-    private var videoCard: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Rectangle()
-                .fill(Color(.secondarySystemBackground))
-                .aspectRatio(16/9, contentMode: .fit)
-                .overlay(alignment: .bottomTrailing) {
-                    Text("12:40")
-                        .font(.system(size: 12, weight: .medium))
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 4)
-                        .padding(.vertical, 2)
-                        .background(.black.opacity(0.8))
-                        .clipShape(RoundedRectangle(cornerRadius: 4))
-                        .padding(8)
-                }
-
-            HStack(alignment: .top, spacing: 12) {
-                Circle()
-                    .fill(.gray)
-                    .frame(width: 36, height: 36)
-
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Config 2022 Opening Keynote - Dylan Field")
-                        .font(.system(size: 16))
-                        .lineLimit(2)
-
-                    Text("Figma · 437K views · 7 days ago")
-                        .font(.system(size: 12))
-                        .foregroundStyle(.secondary)
-                }
-
-                Spacer()
-
-                Image(systemName: "ellipsis")
-                    .rotationEffect(.degrees(90))
-                    .font(.system(size: 14))
-            }
-            .padding(.horizontal, 16)
-        }
     }
     
     private var shortsSection: some View {
