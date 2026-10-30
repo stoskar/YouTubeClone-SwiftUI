@@ -9,8 +9,13 @@ import SwiftUI
 
 struct SubscriptionsView: View {
     var body: some View {
-        Text("Subscriptions")
-            .font(.largeTitle)
+        VStack(spacing: 0) {
+            TopBarView()
+            Spacer()
+            Text("Subscriptions")
+                .font(.largeTitle)
+            Spacer()
+        }
     }
 }
 

@@ -9,8 +9,13 @@ import SwiftUI
 
 struct LibraryView: View {
     var body: some View {
-        Text("Library")
-            .font(.largeTitle)
+        VStack(spacing: 0) {
+            TopBarView()
+            Spacer()
+            Text("Library")
+                .font(.largeTitle)
+            Spacer()
+        }
     }
 }
 

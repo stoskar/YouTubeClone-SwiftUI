@@ -14,7 +14,7 @@ struct HomeView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            topBar
+            TopBarView()
             categoryChips
             
             ScrollView {
@@ -30,34 +30,6 @@ struct HomeView: View {
                 }
             }
         }
-    }
-    
-    private var topBar: some View {
-        HStack(spacing: 20) {
-            HStack(spacing: 4) {
-                Image("AppLogo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 20)
-                
-                Text("YouTube")
-                    .font(.system(size: 20, weight: .bold))
-                    .tracking(-1)
-            }
-            
-            Spacer()
-            
-            Image(systemName: "airplayvideo")
-            Image(systemName: "bell")
-            Image(systemName: "magnifyingglass")
-            
-            Circle()
-                .fill(.gray)
-                .frame(width: 28, height: 28)
-        }
-        .font(.system(size: 20))
-        .padding(.horizontal, 16)
-        .padding(.vertical, 8)
     }
     
     private var categoryChips: some View {
