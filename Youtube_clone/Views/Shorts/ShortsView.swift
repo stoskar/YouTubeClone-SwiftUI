@@ -74,24 +74,15 @@ struct ShortsView: View {
 
     private var actionColumn: some View {
         VStack(spacing: 20) {
-            actionButton("hand.thumbsup.fill", label: "24K")
-            actionButton("hand.thumbsdown.fill", label: "Dislike")
-            actionButton("text.bubble.fill", label: "106")
-            actionButton("arrowshape.turn.up.right.fill", label: "Share")
-            actionButton("arrow.triangle.2.circlepath", label: "Remix")
+            ShortsActionButton(systemName: "hand.thumbsup.fill", label: "24K")
+            ShortsActionButton(systemName: "hand.thumbsdown.fill", label: "Dislike")
+            ShortsActionButton(systemName: "text.bubble.fill", label: "106")
+            ShortsActionButton(systemName: "arrowshape.turn.up.right.fill", label: "Share")
+            ShortsActionButton(systemName: "arrow.triangle.2.circlepath", label: "Remix")
 
             RoundedRectangle(cornerRadius: 6)
                 .fill(.gray)
                 .frame(width: 40, height: 40)
-        }
-    }
-
-    private func actionButton(_ systemName: String, label: String) -> some View {
-        VStack(spacing: 4) {
-            Image(systemName: systemName)
-                .font(.system(size: 24))
-            Text(label)
-                .font(.system(size: 12))
         }
     }
 }
