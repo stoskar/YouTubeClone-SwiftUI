@@ -11,17 +11,22 @@ enum AppTab {
     case home, shorts, subscriptions, library
 }
 
+enum TabIcon {
+    case system(String)
+    case asset(normal: String, selected: String)
+}
+
 struct CustomTabBar: View {
     @Binding var selectedTab: AppTab
     var onCreateTapped: () -> Void
 
     var body: some View {
         HStack(spacing: 0) {
-            TabBarItem(title: "Home", icon: "house", isSelected: selectedTab == .home) {
+            TabBarItem(title: "Home", icon: .system("house"), isSelected: selectedTab == .home) {
                 selectedTab = .home
             }
 
-            TabBarItem(title: "Shorts", icon: "play.rectangle.on.rectangle", isSelected: selectedTab == .shorts) {
+            TabBarItem(title: "Shorts", icon: .asset(normal: "shorts", selected: "shorts_selected"), isSelected: selectedTab == .shorts) {
                 selectedTab = .shorts
             }
 
@@ -31,11 +36,11 @@ struct CustomTabBar: View {
             }
             .frame(maxWidth: .infinity)
 
-            TabBarItem(title: "Subscriptions", icon: "rectangle.stack.badge.play", isSelected: selectedTab == .subscriptions) {
+            TabBarItem(title: "Subscriptions", icon: .system("rectangle.stack.badge.play"), isSelected: selectedTab == .subscriptions) {
                 selectedTab = .subscriptions
             }
 
-            TabBarItem(title: "Library", icon: "play.square.stack", isSelected: selectedTab == .library) {
+            TabBarItem(title: "Library", icon: .system("play.square.stack"), isSelected: selectedTab == .library) {
                 selectedTab = .library
             }
         }
@@ -51,16 +56,23 @@ struct CustomTabBar: View {
 
 private struct TabBarItem: View {
     let title: String
-    let icon: String
+    let icon: TabIcon
     let isSelected: Bool
     let action: () -> Void
 
     var body: some View {
         Button(action: action) {
             VStack(spacing: 4) {
-                Image(systemName: icon)
-                    .font(.system(size: 22))
-                    .symbolVariant(isSelected ? .fill : .none)
+                switch icon {
+                case .system(let name):
+                    Image(systemName: name)
+                        .font(.system(size: 22))
+                        .symbolVariant(isSelected ? .fill : .none)
+                case .asset(let normal, let selected):
+                    Image(isSelected ? selected : normal)
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                }
 
                 Text(title)
                     .font(.system(size: 11))
