@@ -70,20 +70,9 @@ struct HomeView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                 
                 ForEach(categories, id: \.self) { category in
-                    let isSelected = category == selectedCategory
-                    
-                    Button {
+                    CategoryChipView(title: category, isSelected: category == selectedCategory) {
                         selectedCategory = category
-                    } label: {
-                        Text(category)
-                            .font(.system(size: 14, weight: .medium))
-                            .padding(.horizontal, 12)
-                            .frame(height: 32)
-                            .foregroundStyle(isSelected ? Color(.systemBackground) : Color.primary)
-                            .background(isSelected ? Color.primary : Color(.secondarySystemBackground))
-                            .clipShape(RoundedRectangle(cornerRadius: 8))
                     }
-                    .buttonStyle(.plain)
                 }
             }
             .padding(.horizontal, 16)
@@ -105,36 +94,16 @@ struct HomeView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
                     ForEach(0..<5) { _ in
-                        shortCard
+                        ShortCardView(
+                            title: "Config 2022 Opening Keynote - Dylan Field",
+                            views: "166K views"
+                        )
                     }
                 }
                 .padding(.horizontal, 16)
             }
         }
         .padding(.top, 8)
-    }
-    
-    private var shortCard: some View {
-        RoundedRectangle(cornerRadius: 8)
-            .fill(Color(.secondarySystemBackground))
-            .frame(width: 160, height: 284)
-            .overlay(alignment: .topTrailing) {
-                Image(systemName: "ellipsis")
-                    .rotationEffect(.degrees(90))
-                    .padding(12)
-            }
-            .overlay(alignment: .bottomLeading) {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("Config 2022 Opening Keynote - Dylan Field")
-                        .font(.system(size: 14, weight: .medium))
-                        .lineLimit(2)
-
-                    Text("166K views")
-                        .font(.system(size: 12))
-                        .foregroundStyle(.secondary)
-                }
-                .padding(10)
-            }
     }
 }
 
