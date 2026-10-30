@@ -10,15 +10,15 @@ import SwiftUI
 struct ShortCardView: View {
     let title: String
     let views: String
+    var onMoreTapped: () -> Void = {}
 
     var body: some View {
         RoundedRectangle(cornerRadius: 8)
             .fill(Color(.secondarySystemBackground))
             .frame(width: 160, height: 284)
             .overlay(alignment: .topTrailing) {
-                Image(systemName: "ellipsis")
-                    .rotationEffect(.degrees(90))
-                    .padding(12)
+                MoreButton(action: onMoreTapped)
+                    .padding(8)
             }
             .overlay(alignment: .bottomLeading) {
                 VStack(alignment: .leading, spacing: 2) {

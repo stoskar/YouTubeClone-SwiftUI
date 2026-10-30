@@ -13,6 +13,7 @@ struct VideoCardView: View {
     let views: String
     let uploadedAgo: String
     let duration: String
+    var onMoreTapped: () -> Void = {}
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -47,9 +48,7 @@ struct VideoCardView: View {
 
                 Spacer()
 
-                Image(systemName: "ellipsis")
-                    .rotationEffect(.degrees(90))
-                    .font(.system(size: 14))
+                MoreButton(action: onMoreTapped)
             }
             .padding(.horizontal, 16)
         }
